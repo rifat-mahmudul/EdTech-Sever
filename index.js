@@ -1,13 +1,24 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const port = process.env.PORT || 5000;
+
+//all router imports here
+const jwtHandler = require('./routes/jwtHandler')
 
 //app and middleware
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+    origin : ['http://localhost:5173'],
+    credentials : true,
+    optionsSuccessStatus : 200
+}));
+
+app.use(cookieParser());
 
 const user = process.env.DB_USER;
 const pass = process.env.DB_PASS;
@@ -23,6 +34,8 @@ mongoose.connect(uri)
     console.log(`error from db connection ${err}`);
 })
 
+//all router here
+app.use('/jwt', jwtHandler);
 
 app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING`);
