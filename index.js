@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const port = process.env.PORT || 5000;
 
 //all router imports here
-const jwtHandler = require('./routes/jwtHandler')
+const jwtHandler = require('./routes/jwtHandler');
+const userHandler = require('./routes/userHandler');
 
 //app and middleware
 const app = express();
@@ -22,9 +23,10 @@ app.use(cookieParser());
 
 const user = process.env.DB_USER;
 const pass = process.env.DB_PASS;
+const DB_NAME = process.env.DB_NAME;
 
 //Database connection
-const uri = `mongodb+srv://${user}:${pass}@cluster0.pr0dk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://${user}:${pass}@cluster0.pr0dk.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.connect(uri)
 .then(() => {
@@ -36,6 +38,7 @@ mongoose.connect(uri)
 
 //all router here
 app.use('/jwt', jwtHandler);
+app.use('/users', userHandler)
 
 app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING`);
