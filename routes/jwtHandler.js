@@ -1,7 +1,10 @@
 const express = require('express');
-const { postJwt } = require('../controllers/jwtController');
+const { postJwt, clearCookie } = require('../controllers/jwtController');
 const router = express.Router();
 
-router.post('/', postJwt);
+router
+    .route('/')
+    .post(postJwt)
+    .get(clearCookie)
 
 module.exports = router;
