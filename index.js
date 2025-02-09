@@ -40,7 +40,7 @@ mongoose.connect(uri)
 //all router here
 app.use('/jwt', jwtHandler);
 app.use('/users', userHandler);
-app.use('/add-course', addCourseHandler);
+app.use('/courses', addCourseHandler);
 
 app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING`);

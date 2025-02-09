@@ -11,7 +11,18 @@ const postCourse = async(req, res) => {
     }
 }
 
+const getCourses = async(req, res) => {
+    try {
+        const result = await Courses.find();
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`An error from add course ${error}`);
+        res.status(500).send('An error from add course ${error}')
+    }
+}
+
 
 module.exports = {
     postCourse,
+    getCourses
 }
