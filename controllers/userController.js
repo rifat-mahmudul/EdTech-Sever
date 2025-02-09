@@ -18,6 +18,18 @@ const postUser = async(req, res) => {
     }
 }
 
+const getUserByEmail = async(req, res) => {
+    try {
+        const email = req.params.email;
+        const result = await User.findOne({email : email});
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`error from get user ${error}`);
+        res.status(500).send(`An error from get user ${error}`);
+    }
+}
+
 module.exports = {
     postUser,
+    getUserByEmail
 }
