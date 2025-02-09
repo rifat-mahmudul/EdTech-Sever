@@ -8,6 +8,7 @@ const port = process.env.PORT || 5000;
 //all router imports here
 const jwtHandler = require('./routes/jwtHandler');
 const userHandler = require('./routes/userHandler');
+const addCourseHandler = require('./routes/addCourseHandler');
 
 //app and middleware
 const app = express();
@@ -38,7 +39,8 @@ mongoose.connect(uri)
 
 //all router here
 app.use('/jwt', jwtHandler);
-app.use('/users', userHandler)
+app.use('/users', userHandler);
+app.use('/add-course', addCourseHandler);
 
 app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING`);
