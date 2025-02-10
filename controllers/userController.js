@@ -18,6 +18,17 @@ const postUser = async(req, res) => {
     }
 }
 
+
+const getAllUser = async(req, res) => {
+    try {
+        const result = await User.find();
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`error from get all user ${error}`);
+        res.status(500).send(`An error from get all user ${error}`);
+    }
+}
+
 const getUserByEmail = async(req, res) => {
     try {
         const email = req.params.email;
@@ -31,5 +42,6 @@ const getUserByEmail = async(req, res) => {
 
 module.exports = {
     postUser,
-    getUserByEmail
+    getUserByEmail,
+    getAllUser
 }
