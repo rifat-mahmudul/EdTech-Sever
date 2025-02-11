@@ -32,9 +32,22 @@ const getSingleCourse = async(req, res) => {
     }
 }
 
+const deleteCourse = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const query = {_id : id};
+        const result = await Courses.deleteOne(query);
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`An error from delete course ${error}`);
+        res.status(500).send(`An error from delete course ${error}`)
+    }
+}
+
 
 module.exports = {
     postCourse,
     getCourses,
-    getSingleCourse
+    getSingleCourse,
+    deleteCourse
 }
