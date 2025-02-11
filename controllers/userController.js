@@ -59,9 +59,22 @@ const updateUser = async(req, res) => {
     }
 }
 
+const deleteUser = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const query = {_id : id};
+        const result = await User.deleteOne(query);
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`error from delete user ${error}`);
+        res.status(500).send(`An error from delete user ${error}`);
+    }
+}
+
 module.exports = {
     postUser,
     getUserByEmail,
     getAllUser,
-    updateUser
+    updateUser,
+    deleteUser
 }
