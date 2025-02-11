@@ -40,8 +40,28 @@ const getUserByEmail = async(req, res) => {
     }
 }
 
+const updateUser = async(req, res) => {
+    try {
+        const userData = req.body;
+        const id = req.params.id;
+        const query = {_id : id};
+        const updateDoc = {
+            $set : {
+                ...userData
+            }
+        }
+
+        const result = await User.updateOne(query, updateDoc);
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`error from update user ${error}`);
+        res.status(500).send(`An error from update user ${error}`);
+    }
+}
+
 module.exports = {
     postUser,
     getUserByEmail,
-    getAllUser
+    getAllUser,
+    updateUser
 }
