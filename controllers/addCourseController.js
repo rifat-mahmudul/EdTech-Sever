@@ -44,10 +44,30 @@ const deleteCourse = async(req, res) => {
     }
 }
 
+const updateCourse = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const query = {_id : id};
+        const courseData = req.body;
+        const updateDoc = {
+            $set : {
+                ...courseData
+            }
+        }
+
+        const result = await Courses.updateOne(query, updateDoc);
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`An error from update course ${error}`);
+        res.status(500).send(`An error from update course ${error}`)
+    }
+}
+
 
 module.exports = {
     postCourse,
     getCourses,
     getSingleCourse,
-    deleteCourse
+    deleteCourse,
+    updateCourse
 }

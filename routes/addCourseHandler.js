@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const verifyToken = require('../middleware/verifyToken');
 const verifyAdmin = require('../middleware/verifyAdmin');
-const { postCourse, getCourses, getSingleCourse, deleteCourse } = require('../controllers/addCourseController');
+const { postCourse, getCourses, getSingleCourse, deleteCourse, updateCourse } = require('../controllers/addCourseController');
 
 router
     .route('/')
@@ -13,5 +13,6 @@ router
     .route('/:id')
     .get(getSingleCourse)
     .delete(verifyToken, verifyAdmin, deleteCourse)
+    .patch(verifyToken, verifyAdmin, updateCourse)
 
 module.exports = router;
