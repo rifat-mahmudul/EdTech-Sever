@@ -12,6 +12,19 @@ const postCourseRequest = async(req, res) => {
     }
 }
 
+const getCourseByName = async(req, res) => {
+    try {
+        const courseName = req.params.courseName;
+        const query = {courseName : courseName};
+        const result = await courseRequest.findOne(query);
+        res.status(200).send(result)
+    } catch (error) {
+        console.log(`An error from get course request data by email ${error}`);
+        res.status(500).send(`An error from get course request data by email ${error}`);
+    }
+}
+
 module.exports = {
-    postCourseRequest
+    postCourseRequest,
+    getCourseByName
 }
