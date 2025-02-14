@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 const jwtHandler = require('./routes/jwtHandler');
 const userHandler = require('./routes/userHandler');
 const addCourseHandler = require('./routes/addCourseHandler');
+const courseRequestHandler = require('./routes/courseRequestHandler')
 
 //app and middleware
 const app = express();
@@ -41,6 +42,7 @@ mongoose.connect(uri)
 app.use('/jwt', jwtHandler);
 app.use('/users', userHandler);
 app.use('/courses', addCourseHandler);
+app.use('/course-request', courseRequestHandler);
 
 app.get('/', (req, res) => {
     res.send(`SERVER IS RUNNING`);

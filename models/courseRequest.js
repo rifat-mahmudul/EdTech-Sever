@@ -9,12 +9,25 @@ const courseRequestSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    coursePrice : {
-        type : Number,
+    phoneNumber : {
+        type : String,
+        require : true,
+    },
+    transactionID : {
+        type : String,
+        required : true 
     },
     student : {
         type : Object,
-        required: true
+        required: true,
+        name : {
+            type : String,
+            required : true
+        },
+        email : {
+            type : String,
+            required : true
+        }
     },
     status : {
         type : String,
