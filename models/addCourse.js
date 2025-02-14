@@ -17,6 +17,10 @@ const addCourseSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
+    privateGroup : {
+        type : String,
+        required : true
+    },
     description : {
         type : String,
         required : true
