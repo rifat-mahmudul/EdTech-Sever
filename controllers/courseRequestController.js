@@ -39,7 +39,7 @@ const deleteRequest = async(req, res) => {
         const id = req.params.id;
         const query = {_id : id};
         const result = await courseRequest.deleteOne(query);
-        res.status(200).send(query);
+        res.status(200).send(result);
     } catch (error) {
         console.log(`An error from delete request data ${error}`);
         res.status(200).send(`An error from delete request data ${error}`)
