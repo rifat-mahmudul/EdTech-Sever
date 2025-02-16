@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { postUser, getUserByEmail, getAllUser, updateUser, deleteUser } = require('../controllers/userController');
+const { postUser, getUserByEmail, getAllUser, updateUser, deleteUser, updateUserByEmail } = require('../controllers/userController');
 const verifyToken = require('../middleware/verifyToken');
 const verifyAdmin = require('../middleware/verifyAdmin');
 
@@ -17,5 +17,9 @@ router
 router
     .route('/:email')
     .get(getUserByEmail)
+    
+router
+    .route('/email/:email')
+    .patch(verifyToken, verifyAdmin, updateUserByEmail)
 
 module.exports = router;

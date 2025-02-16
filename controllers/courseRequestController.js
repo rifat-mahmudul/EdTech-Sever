@@ -46,9 +46,22 @@ const deleteRequest = async(req, res) => {
     }
 }
 
+const updateRequest = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const query = {_id : id};
+        const result = await courseRequest.updateOne(query);
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`An error from update request data ${error}`);
+        res.status(200).send(`An error from delete update data ${error}`)
+    }
+}
+
 module.exports = {
     postCourseRequest,
     getCourseByName,
     getAllRequest,
-    deleteRequest
+    deleteRequest,
+    updateRequest
 }
