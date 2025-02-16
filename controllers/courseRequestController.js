@@ -65,10 +65,23 @@ const updateRequest = async(req, res) => {
     }
 }
 
+const getCourseByEmail = async(req, res) => {
+    try {
+        const email = req.params.email;
+        const query = {"student.email" : email};
+        const result = await courseRequest.find(query);
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`An error from get course by email ${error}`);
+        res.status(200).send(`An error from get course by email ${error}`)
+    }
+}
+
 module.exports = {
     postCourseRequest,
     getCourseByName,
     getAllRequest,
     deleteRequest,
-    updateRequest
+    updateRequest,
+    getCourseByEmail
 }
