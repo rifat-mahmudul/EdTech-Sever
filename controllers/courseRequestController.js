@@ -48,9 +48,16 @@ const deleteRequest = async(req, res) => {
 
 const updateRequest = async(req, res) => {
     try {
+        const requestData = req.body;
         const id = req.params.id;
         const query = {_id : id};
-        const result = await courseRequest.updateOne(query);
+        const updateDoc = {
+            $set : {
+                ...requestData
+            }
+        }
+
+        const result = await courseRequest.updateOne(query, updateDoc);
         res.status(200).send(result);
     } catch (error) {
         console.log(`An error from update request data ${error}`);
