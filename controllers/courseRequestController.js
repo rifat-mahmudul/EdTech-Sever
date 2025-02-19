@@ -26,7 +26,7 @@ const getCourseByName = async(req, res) => {
 
 const getAllRequest = async(req, res) => {
     try {
-        const result = await courseRequest.find();
+        const result = await courseRequest.find({status : "Pending"});
         res.status(200).send(result);
     } catch (error) {
         console.log(`An error from get all request data ${error}`);
