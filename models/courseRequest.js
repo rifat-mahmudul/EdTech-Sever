@@ -35,17 +35,6 @@ const courseRequestSchema = new mongoose.Schema({
     },
     privateGroup : {
         type : String,
-    },
-    classes : {
-        type : Array,
-        className : {
-            type : String,
-            required : true
-        },
-        classLink : {
-            type : String,
-            required : true
-        }
     }
 })
 
