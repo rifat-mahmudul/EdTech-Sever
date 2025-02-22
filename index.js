@@ -16,7 +16,13 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin : ['http://localhost:5173'],
+    origin : [
+        'http://localhost:5173', 
+        'https://virtual-academy-bd-6f763.web.app',
+        'https://virtual-academy-bd-6f763.firebaseapp.com',
+        'https://virtualacademybd.com',
+        'https://www.virtualacademybd.com'
+        ],
     credentials : true,
     optionsSuccessStatus : 200
 }));
